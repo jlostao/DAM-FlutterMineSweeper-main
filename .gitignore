@@ -1,0 +1,19 @@
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Dart
+.dart_tool
+android
+build
+ios
+linux
+macos
+web
+windows
