@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'widget_tresratlla.dart';
+import 'widget_buscamines.dart';
 
 class LayoutPlay extends StatefulWidget {
   const LayoutPlay({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class LayoutPlayState extends State<LayoutPlay> {
         ),
       ),
       child: const SafeArea(
-        child: WidgetTresRatlla(),
+        child: WidgetBuscamines(),
       ),
     );
   }

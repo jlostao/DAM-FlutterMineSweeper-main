@@ -10,20 +10,20 @@ class LayoutSettings extends StatefulWidget {
 }
 
 class LayoutSettingsState extends State<LayoutSettings> {
-  List<String> playerColors = ["Verd", "Blau", "Gris"];
-  List<String> opponentColors = ["Vermell", "Taronja", "Marró"];
+  List<String> boardsize = ["Petit", "Gran"];
+  List<String> minesnumber = ["5", "10", "20"];
 
   // Mostra el CupertinoPicker en un diàleg.
   void _showPicker(String type) {
-    List<String> options = type == "player" ? playerColors : opponentColors;
-    String title = type == "player"
-        ? "Selecciona el color del jugador"
-        : "Selecciona el color de l'oponent";
+    List<String> options = type == "boardsize" ? boardsize : minesnumber;
+    String title = type == "boardsize"
+        ? "Selecciona la mida del tauler"
+        : "Selecciona la quantitat de mines";
 
     // Troba l'índex de la opció actual a la llista d'opcions
     AppData appData = Provider.of<AppData>(context, listen: false);
     String currentValue =
-        type == "player" ? appData.colorPlayer : appData.colorOpponent;
+        type == "boardsize" ? appData.boardsize : appData.minesnumber;
     int currentIndex = options.indexOf(currentValue);
     FixedExtentScrollController scrollController =
         FixedExtentScrollController(initialItem: currentIndex);
@@ -53,13 +53,13 @@ class LayoutSettingsState extends State<LayoutSettings> {
               child: SafeArea(
                 top: false,
                 child: CupertinoPicker(
-                  itemExtent: 32.0,
+                  itemExtent: 60.0,
                   scrollController: scrollController,
                   onSelectedItemChanged: (index) {
-                    if (type == "player") {
-                      appData.colorPlayer = options[index];
+                    if (type == "boardsize") {
+                      appData.boardsize = options[index];
                     } else {
-                      appData.colorOpponent = options[index];
+                      appData.minesnumber = options[index];
                     }
                     // Actualitzar el widget
                     setState(() {});
@@ -94,17 +94,17 @@ class LayoutSettingsState extends State<LayoutSettings> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const Text("Color jugador: "),
+              const Text("Mida tauler: "),
               CupertinoButton(
-                onPressed: () => _showPicker("player"),
-                child: Text(appData.colorPlayer),
+                onPressed: () => _showPicker("boardsize"),
+                child: Text(appData.boardsize),
               )
             ]),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const Text("Color de l'oponent: "),
+              const Text("Quantitat mines: "),
               CupertinoButton(
-                onPressed: () => _showPicker("opponent"),
-                child: Text(appData.colorOpponent),
+                onPressed: () => _showPicker("minesnumber"),
+                child: Text(appData.minesnumber),
               )
             ]),
           ],
